@@ -255,8 +255,7 @@ ga('send', 'pageview');
                     <ul class="">
                        <li class=""><a href="#">How it Works</a></li>
                        <li class=""><a href="/register">Join Us</a></li>
-                     
-                       
+                       <li class=""><a href="/terms_and_conditions">Term of use</a></li>     
                     </ul>
                   </div>
                 </div>
