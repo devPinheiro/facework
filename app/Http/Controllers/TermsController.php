@@ -15,6 +15,7 @@ class TermsController extends Controller
     public function index()
     {
         //
+        return view('terms.index');
     }
 
     /**
