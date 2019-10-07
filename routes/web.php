@@ -95,6 +95,12 @@ Route::get('/site/settings',[
 'as' => 'settings'
 ]);
 
+// terms and conditions route
+Route::get('/terms_and_conditions', [
+    'uses' => 'TermsController@index',
+    'as'=> 'terms_and_conditions' 
+]);
+
 Route::post('/site/settings/create',[
 'uses' => 'SettingController@store',
 'as' => 'settings.store'
