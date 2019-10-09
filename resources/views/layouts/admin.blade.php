@@ -326,7 +326,7 @@ ga('send', 'pageview');
 								</div>
 							</li>
 						
-			   <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+			       <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
 								<a href="{{ route('broadcast.create') }}" class="m-menu__link">
 								<i class="m-menu__link-icon flaticon-user-settings"></i>
 								<span class="m-menu__link-text">
@@ -340,6 +340,15 @@ ga('send', 'pageview');
 									<i class="m-menu__link-icon flaticon-user-settings"></i>
 									<span class="m-menu__link-text">
 									Adverts
+									</span>
+									</a>   
+								</li>
+
+								<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true">
+									<a href="{{ route('terms.create') }}" class="m-menu__link">
+									<i class="m-menu__link-icon flaticon-user-settings"></i>
+									<span class="m-menu__link-text">
+									Term of Use
 									</span>
 									</a>   
 								</li>

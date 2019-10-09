@@ -83,6 +83,8 @@ Route::resource('posts', 'PostController');
 
 Route::resource('task', 'TaskController');
 
+Route::resource('terms', 'TermsController');
+
 Route::post('/posts/create',[
     'uses' => 'PostController@store',
     'as' => 'posts.store'

@@ -26,3 +26,8 @@ Route::middleware('cors')->post('/feedback',[
         'uses'       =>      'FeedbackController@store',
         'as'         =>      'send-feedback'
     ]);
+
+Route::middleware('cors')->get('/feedback-all',[
+        'uses'       =>      'FeedbackController@index',
+        'as'         =>      'get-feedback'
+    ]);
