@@ -16,7 +16,9 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+         //
+         $feedback = feedback::orderby('id', 'desc')->get();
+         return new FeedbackResource($feedback);
     }
 
     /**
@@ -26,7 +28,7 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        //
+       
 
     }
 

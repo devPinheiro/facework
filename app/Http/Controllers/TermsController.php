@@ -26,6 +26,7 @@ class TermsController extends Controller
     public function create()
     {
         //
+        return view('terms.create');
     }
 
     /**
@@ -37,6 +38,14 @@ class TermsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request, [
+            'body' => 'required'
+        ]);
+        $setting = Setting::create([
+            'body' => $request->body
+        ]);
+        
+        return redirect()->back()->with('flash_message', 'Terms and Conditions created');
     }
 
     /**
