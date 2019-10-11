@@ -41,7 +41,7 @@ class TermsController extends Controller
         $this->validate($request, [
             'body' => 'required'
         ]);
-        $setting = Setting::create([
+        $term = terms::create([
             'body' => $request->body
         ]);
         

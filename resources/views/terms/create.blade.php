@@ -21,8 +21,9 @@
 								
 										
 										<div class="form-group m-form__group">
-                                            {{ Form::label('body', 'Terms and Conditions') }}
-                                            {{ Form::textarea('body',  null, array('class' => 'form-control m-input m-input--solid')) }}
+                        {{ Form::open(array('url' => route('terms.store') , 'enctype' => 'multipart/form-data',)) }}
+                                           
+                                            {{ Form::textarea('body',  null, array('class' => 'form-control m-input m-input--solid ', 'id' => 'summernote')) }}
 										</div><br>
 
                                       
@@ -41,3 +42,10 @@
 
 
 @endsection
+
+<script>
+ 
+   
+      document.getElementById('#summernote').summernote();
+  
+    </script>
