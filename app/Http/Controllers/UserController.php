@@ -8,6 +8,8 @@ use App\User;
 use Auth;
 use App\Profile;
 use App\Post;
+use App\feedback;
+
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -32,7 +34,8 @@ class UserController extends Controller {
     //Get all users and pass it to the view
         $posts = Post::all();
         $users = User::all();
-        return view('users.index')->with('users', $users)->with('posts', $posts);
+        $feedback = feedback::all();
+        return view('users.index')->with('users', $users)->with('posts', $posts)->with('feedback', $feedback);
     }
 
     /**

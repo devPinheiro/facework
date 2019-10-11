@@ -531,6 +531,7 @@ ga('send', 'pageview');
 			
 		</ul>
 		<!-- begin::Quick Nav -->	
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
     	<!--begin::Base Scripts -->
 		<script src="../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 		<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
@@ -541,6 +542,21 @@ ga('send', 'pageview');
         <!--begin::Page Snippets -->
 		<script src="../assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
+		{{-- D3.js --}}
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script>
+		  var data = [30, 86, 168, 281, 303, 365];
+
+			d3.select(".chart")
+				.selectAll("div")
+				.data(data)
+					.enter()
+					.append("div")
+					.style("width", function(d) { return d + "px"; })
+					.text(function(d) { return d; });
+
+					
+		</script>
 	</body>
 	<!-- end::Body -->
 </html>

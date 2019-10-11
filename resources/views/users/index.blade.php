@@ -190,4 +190,63 @@
 
 
 
+						<h3 class="m-subheader__title ">
+							<i class="fa fa-users"></i> Feedback
+					</h3>
+				
+				 <hr>
+			
+							<div class="m-portlet">
+										<div class="m-portlet__head">
+											<div class="m-portlet__head-caption">
+												<div class="m-portlet__head-title">
+													<h3 class="m-portlet__head-text">
+														User reviews
+													</h3>
+												</div>
+																			</div>
+																			 <div class="m-portlet__head-tools">
+																					<ul class="m-portlet__nav">
+																							
+																				
+																					</ul>
+																			</div>
+																	</div>
+																		
+										<div class="m-portlet__body">
+											<!--begin::Section-->
+											<div class="m-section">
+												<div class="m-section__content">
+													<table class="table table-striped m-table">
+														<thead>
+																											<tr>
+																												
+																											</tr>
+														</thead>
+														<tbody>
+																@if (count($feedback) == 0)
+																  <h6 class="text-center pt-4"> You do not have any reviews yet</h6>
+                                   
+																@else
+
+															 @foreach ($feedback as $fb)
+															
+																		
+															
+																<tr>
+																		<td>{{ $fb->description }}</td>
+																		
+																</tr>
+																@endforeach
+																@endif							
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!--end::Section-->
+										</div>
+										<!--end::Form-->
+									</div>
+
+
 @endsection
