@@ -38,32 +38,13 @@
                                             {{ Form::select('category_id',  $categories, null, array('class' => 'form-control m-input m-input--solid')) }}
 										</div><br>
 										
-
-										<div class="form-group m-form__group">
-                                            {{ Form::label('position', 'Job Position') }}
-                                            {{ Form::text('position',  null, array('class' => 'form-control m-input m-input--solid')) }}
-										</div><br>
-
-										<div class="form-group m-form__group">
-                                            {{ Form::label('experience', 'Experience') }}
-                                            {{ Form::text('experience',  null, array('class' => 'form-control m-input m-input--solid')) }}
-										</div><br>
-										
-										<div class="form-group m-form__group">
-                                            {{ Form::label('location', 'Location') }}
-                                            {{ Form::text('location',  null, array('class' => 'form-control m-input m-input--solid')) }}
-										</div><br>
 										
 										<div class="form-group m-form__group">
                                             {{ Form::label('dead_line', 'Deadline') }}
                                             {{ Form::text('deadline_date',  null, array('class' => 'form-control m-input m-input--solid')) }}
 										</div><br>
 										
-										<div class="form-group m-form__group">
-                                            {{ Form::label('salary', 'Salary') }}
-                                            {{ Form::text('salary',   null,array('class' => 'form-control m-input m-input--solid')) }}
-										</div><br>
-										
+									
 										<div class="form-group m-form__group">
                                             {{ Form::label('link', 'Link to Job') }}
                                             {{ Form::text('link',  null, array('class' => 'form-control m-input m-input--solid')) }}

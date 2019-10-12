@@ -14,7 +14,7 @@ class Jobs extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id', 'title','position','description', 'experience', 'job_type', 'salary', 'date_posted', 'deadline_date' ,'location'     
+        'category_id', 'title','description', 'job_type', 'deadline_date' 
    ];
 
     // A job belongs to a category uniquely
