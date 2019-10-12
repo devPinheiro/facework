@@ -161,6 +161,7 @@ const handleSubmmit = async () => {
   // manipulate data
   const res = await sendFeedback(data);
   if (res) {
+    console.log(res)
 
     // show alert
     $('.modal').modal('hide')
