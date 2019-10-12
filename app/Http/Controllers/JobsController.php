@@ -125,12 +125,11 @@ class JobsController extends Controller
         //Validating input field
         $this->validate($request, [    
         'title' => 'required',
-        'postion' => 'required',
+       
         'description' => 'required',
-        'experience' => 'required',
+        
         'deadline_date' => 'required',
-        'location' => 'required',
-        'salary' => 'required',
+        
         ]);
 
         $job = Jobs::find($id);
@@ -138,16 +137,14 @@ class JobsController extends Controller
             
             $job = $request->title;
             $job = $request->category_id;
-            $job = $request->position;
+           
             $job = $request->description;
-            $job = $request->experience;
+        
             $job = $request->deadline_date;
-            $job = $request->date_posted;
-            $job = $request->job_type;            
-            $job = $request->location;
-            $job = $request->salary;
-            $job = $request->comp_name;
-            $job = $request->comp_desc;
+          
+            $job = $request->link;            
+           
+         
             $job->save();
 
           return redirect()->back()->with('flash_message', 
