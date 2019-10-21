@@ -157,11 +157,9 @@ const handleSubmmit = async () => {
     description: feedback
   };
 
-
   // manipulate data
   const res = await sendFeedback(data);
   if (res) {
-    console.log(res)
 
     // show alert
     $('.modal').modal('hide')
@@ -192,18 +190,6 @@ const sendFeedback = async (payload) => {
 
 
 // D3.js
-
-var data = [30, 86, 168, 281, 303, 365];
-
-d3.select(".chart")
-  .selectAll("div")
-  .data(data)
-    .enter()
-    .append("div")
-    .style("width", function(d) { return d + "px"; })
-    .text(function(d) { return d; });
-
-
 
 
 /*jslint  browser: true, white: true, plusplus: true */
