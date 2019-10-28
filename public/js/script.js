@@ -1,4 +1,5 @@
 (function () {
+  
   //Sign up transitions
   $(document).ready(function () {
     //make an ajax call
@@ -144,13 +145,10 @@ $('#rating_blah').click(() => {
   $('#rating_happy').hide('slow')
   $('#rating_sad').hide('slow')
 
-
 });
 
 
-
 const handleSubmmit = async () => {
-
   const feedback = $('#feedback').val();
   const data = {
     satisfaction: rating,
@@ -158,13 +156,7 @@ const handleSubmmit = async () => {
   };
 
   // manipulate data
-  const res = await sendFeedback(data);
-  if (res) {
-
-    // show alert
-    $('.modal').modal('hide')
-
-  }
+  sendFeedback(data);
 }
 
 if ($('#submit_feedback')) {
@@ -172,20 +164,17 @@ if ($('#submit_feedback')) {
 }
 
 const sendFeedback = async (payload) => {
-  const feedbackR = await fetch('http://facework.com.ng/api/feedback', {
-    method: "post",
-    mode: "no-cors",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
+  const baseUrl = 'http://facework.com.ng';
+  $.ajax({
+    type: "post",
+    crossDomain: true,
+    url: `${baseUrl}/api/feedback`,
+    data: payload,
+    success: function (data) {
+       // show alert
+     $('.modal').modal('hide')
+    }
   });
-
-  const feedbackResult = await feedbackR
-  return {
-    feedbackResult
-  }
 }
 
 
