@@ -236,7 +236,7 @@ ga('send', 'pageview');
                        <li class=""><i class="fa fa-phone"></i>
                         <a href="tel:08022790906"> 08022790906</a></li>
                       <li class=""><i class="fa fa-envelope"></i>
-                        <a href="mailto:contact@facework.com.ng"> contact@facework.com.ng</a></li>                
+                        <a href="mailto:contact.facework@gmail.com"> contact.facework@gmail.com</a></li>                
                     </ul>
                     
                   </div>
@@ -273,7 +273,7 @@ ga('send', 'pageview');
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title text-center" id="exampleModalCenterTitle">Choose one those below</h6>
+        <h6 class="modal-title text-center" id="exampleModalCenterTitle">Which of these best describe how you feel about our services?</h6>
       </div>
       <div class="modal-body">
        <div class="container-fluid">
