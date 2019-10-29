@@ -37,7 +37,7 @@
 					<div class="m-login__container">
 						<div class="m-login__logo">
 							<a href="#">
-								<img style="border-radius: 40px;" src="../assets/app/media/img//logos/logo-1.png">
+								<img style="border-radius: 40px;" src="../../images/logo.png">
 							</a>
 						</div>
     
