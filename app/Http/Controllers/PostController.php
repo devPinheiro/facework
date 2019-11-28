@@ -199,12 +199,13 @@ class PostController extends Controller {
 
             $featured = move('uploads/posts/', $featured_new_name);
 
+        }
+
             $post->title = $request->title;
 
             $post->body = $request->body;
                
             $post->save();
-        }
 
         return redirect()->route('posts.show', 
             $post->id)->with('flash_message', 

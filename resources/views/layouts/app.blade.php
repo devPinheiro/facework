@@ -114,7 +114,7 @@ ga('send', 'pageview');
                         <i class="ion-ios-bell-outline dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="badge badge-light">{{ auth()->user()->unreadNotifications->count() }}</span>
                         </i>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton" style="width: 230px;">
                           @if(auth()->user()->unreadNotifications->count() )
                           @foreach (auth()->user()->unreadNotifications as $notification)
                                <div>
@@ -130,7 +130,7 @@ ga('send', 'pageview');
                               </div>  
                           @endforeach      
                           @else
-                          <a class="dropdown-item m-0" href="#">No notifications</a>
+                          <a class="dropdown-item m-0 text-center" href="#">No notifications</a>
                           @endif
                           
                         </div>

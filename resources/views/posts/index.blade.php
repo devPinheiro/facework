@@ -6,6 +6,8 @@
 														All recent posts
 													</h3>
 										 </div>
+
+										   <div class="col-lg-12">  
            
 									   <div class="row">
 												@foreach ($posts as $post)
@@ -13,7 +15,7 @@
 												<div class="col-lg-3" style="box-shadow: 0px 1px 16px 2px #e6e6e6; margin: 30px;">
 													<a href="{{ route('posts.show', $post->id ) }}">
 
-													<div class="card">
+													<div class="card border-0">
 													<div class="card-img-top img-fluid" style="height: 200px; background: url({{ $post->featured }}) no-repeat;     background-size: cover;" >
 														
 														</div>
@@ -22,7 +24,7 @@
 														<h6 class="text-dark">	{{ $post->title }}</h6>
 														<p class="card-text"> </p>
 														<div class="full row">
-															<div class="col-2 pr-0"><img src="{{ $post->profile->image }}" class="img-rounded" alt="" srcset=""></div>
+															<div class="col-2 pr-0"><img style="box-shadow: inset 0px 0px 0px 6px rgba(212, 210, 210, 0.67)" src="{{ $post->profile->image }}" class="img-rounded" alt="" srcset=""></div>
 															<div class="col-7 pl-2 mb-0"><p class="card-text"><small class="text-dark">{{ $post->profile->name }}</small></p>
 														</div>
 															<div class="col-3"><p class="card-text"><small class="text-muted"><i class="fa fa-thumbs-up pl-2"></i> <strong>{{ $post->likes->count() }}</strong></small></p></div>
@@ -37,6 +39,8 @@
 
 												@endforeach
 										 </div>
+
+										   </div>
                      
 											
 									
