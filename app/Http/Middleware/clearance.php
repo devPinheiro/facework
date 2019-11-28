@@ -21,7 +21,7 @@ class clearance {
 
         if ($request->is('posts/create'))//If user is creating a post
          {
-            if (!Auth::user()->hasPermissionTo('Create Post'))
+            if (!Auth::user()->hasPermissionTo('Create'))
          {
                 abort('401');
             } 
@@ -32,7 +32,7 @@ class clearance {
 
         if ($request->is('posts/*/edit')) //If user is editing a post
          {
-            if (!Auth::user()->hasPermissionTo('Edit Post')) {
+            if (!Auth::user()->hasPermissionTo('Edit')) {
                 abort('401');
             } else {
                 return $next($request);
@@ -41,7 +41,7 @@ class clearance {
 
         if ($request->isMethod('Delete')) //If user is deleting a post
          {
-            if (!Auth::user()->hasPermissionTo('Delete Post')) {
+            if (!Auth::user()->hasPermissionTo('Delete')) {
                 abort('401');
             } 
          else 
