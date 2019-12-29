@@ -45,13 +45,17 @@
 						@else
 						   <a href="{{ route('post.like', $post->id ) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand "><i class="fa fa-thumbs-up p-1"></i>  <span class="badge">{{  ($post->likes->count() == 0 ? '' : $post->likes->count()) }}</span></a>
 						@endif
-						@if($post->profile->id === Auth::user()->profile->id)
+						@if(Auth::user())
+						
+						   @if($post->profile->id === Auth::user()->profile->id)
 									@can('Edit')
 									<a href="{{ route('posts.edit', $post->id) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom" role="button"><i class="fa fa-edit p-1"></i></a>
 									@endcan
 									@can('Delete')
 									<button type="submit" class="btn m-btn--pill btn-danger m-btn m-btn--hover-brand m-btn--custom"><i class="fa fa-trash p-1"></i></button>
 									@endcan
+					     	@endif
+						
 						@endif
 					
 						{!! Form::close() !!}

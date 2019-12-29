@@ -36,7 +36,7 @@ class PostController extends Controller {
         $broadcasts = Broadcast::orderby('id', 'desc')->paginate(1);
         $profile = Profile::orderby('id', 'desc')->paginate(7);
         $posts = Post::orderby('id', 'desc')->paginate(7);
-        $users = User::orderby('id', 'desc')->paginate(10);
+        $users = User::orderby('id', 'desc')->get();
         $setting = Setting::first();
         return view('index')->with('users', $users)->with('settings', $setting)->with('posts', $posts)->with('broadcasts', $broadcasts)->with('adverts', $advert)->with('jobs', $jobs);
     }
