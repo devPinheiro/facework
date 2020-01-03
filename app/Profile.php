@@ -14,7 +14,7 @@ class Profile extends Model
      * @var array
      */
     protected $fillable = [
-      'user_id', 'about', 'service', 'address', 'state', 'phone', 'image', 'name', 'email'
+      'user_id', 'about', 'service', 'address', 'state', 'phone', 'image', 'name', 'email', 'facebook', 'instagram', 'twitter'
     ];
 
     // A profile belongs to User uniquely

@@ -238,13 +238,38 @@
                                         </div>
                                     </div>
 
-                                     <div class="form-group m-form__group row">
+
+                                    <div class="form-group m-form__group row">
                                         
                                         <div class="col-lg-6">
                                         <label for="example-text-input" class=" col-form-label">
+                                            Facebook ID
+                                          </label>
+                                        <input class="form-control m-input" type="text" name="facebook" value="{{ $profile->facebook }}">
+                                        </div>
+                                       
+                                        <div class="col-lg-6">
+                                            <label for="example-text-input" class=" col-form-label">
+                                            Twitter Handle
+                                           </label>
+                                            <input class="form-control m-input" type="text" name="twitter" value="{{ $profile->twitter }}">
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label for="example-text-input" class=" col-form-label">
+                                            Instagram ID
+                                           </label>
+                                            <input class="form-control m-input" type="text" name="instagram" value="{{ $profile->instagram }}">
+                                        </div>
+                                    </div>
+
+                                     <div class="form-group m-form__group row">
+                                        
+                                        <div class="col-lg-6">
+                                          <label for="example-text-input" class=" col-form-label">
                                             About (Tell us about you)
                                           </label>
-                                        <textarea class="form-control m-input" type="textarea" cols="3" name="about" value="{{ $profile->about }}"></textarea>
+                                          <textarea class="form-control m-input" type="textarea" cols="6" rows="6" name="about" value="{{ $profile->about }}"></textarea>
                                         </div>
 
                                         
