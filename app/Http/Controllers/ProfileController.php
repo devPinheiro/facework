@@ -110,6 +110,12 @@ class ProfileController extends Controller
             $profile->state = $request->state;
             
             $profile->service = $request->service;
+
+            $profile->facebook = $request->facebook;
+
+            $profile->twitter = $request->twitter;
+            
+            $profile->instagram = $request->instagram;
             
             if($request->role != 'Active'){
                $profile->user->assignRole('Active');
