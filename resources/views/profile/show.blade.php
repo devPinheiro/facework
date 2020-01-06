@@ -116,6 +116,36 @@
                                         </div>
                                     </div>
 
+                                     <div class="form-group m-form__group row">
+                                        
+                                        <div class="col-lg-6">
+                                        <h6 for="example-text-input" class=" col-form-label">
+                                            Facebook:
+                                        </h6>
+                                            <p class="">
+                                                {{ $profile->facebook }}
+                                            </p>
+                                        </div>
+                                       
+                                        <div class="col-lg-6">
+                                            <h6 for="example-text-input" class=" col-form-label">
+                                            Instagram
+                                            </h6>
+                                            <p class="">
+                                                {{ $profile->instagram }}
+                                            </p>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <h6 for="example-text-input" class=" col-form-label">
+                                            Twitter
+                                            </h6>
+                                            <p class="">
+                                                {{ $profile->twiiter }}
+                                            </p>
+                                        </div>
+                                    </div>
+
                                    
 
                                     <div class="form-group m-form__group row">
