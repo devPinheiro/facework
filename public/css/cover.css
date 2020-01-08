@@ -86,11 +86,11 @@ li.nav-item {
 
 li.nav-item a {
     margin: 0px 20px;
-    padding-top: 20px;
+    padding: 5px 10px;
     text-decoration: none;
     font-weight: 500;
     color: #3c3ba0;
-    font-size: 16px;
+    font-size: 12px;
 }
 /* Custom default button */
 .btn-secondary,
