@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
 use Cog\Laravel\Love\Liker\Models\Traits\Liker;
+use Illuminate\Support\Facades\Hash;
 
 
 class User extends Authenticatable implements LikerContract
@@ -17,7 +18,7 @@ class User extends Authenticatable implements LikerContract
 
     public function setPasswordAttribute($password)
         {   
-            $this->attributes['password'] = bcrypt($password);
+            $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
         }
     // user can only have one profile (relationship)   
     public function profile(){
