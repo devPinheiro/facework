@@ -152,7 +152,7 @@
 								<!--begin::Section-->
 								<div class="m-section">
 									<div class="m-section__content">
-										<table class="table table-striped m-table">
+										<table class="table m_datatable__table table-striped m-table">
 											<thead>
                                                 <tr>
                                                     <th>Name</th>
@@ -173,8 +173,9 @@
                                                         <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;"><i class="flaticon-edit-1"></i></a>
 
                                                         {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id] ]) !!}
-                                                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                                        {!! Form::submit('D', ['class' => 'btn btn-danger confirm']) !!}
                                                         {!! Form::close() !!}
+{{-- <a href="{{ route('users.destroy', $user->id) }}" class="btn btn-danger pull-left" style="margin-right: 3px;"><i class="flaticon-delete"></i></a> --}}
 
                                                         </td>
                                                     </tr>

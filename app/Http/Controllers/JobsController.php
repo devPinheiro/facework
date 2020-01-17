@@ -24,7 +24,7 @@ class JobsController extends Controller
     public function index()
     {
         //
-        $jobs = Jobs::orderby('id', 'desc')->paginate(5);
+        $jobs = Jobs::orderby('id', 'desc')->get();
         return view('job.index')->with('jobs', $jobs);
     }
 
