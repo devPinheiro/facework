@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
       crossorigin="anonymous">
     <link rel="stylesheeet" href="css/fontawesome-all.css">
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
     
     <!-- Custom styles for this template -->
     <link href="../../css/cover.css" rel="stylesheet">
@@ -531,20 +532,34 @@ ga('send', 'pageview');
 			
 		</ul>
 		<!-- begin::Quick Nav -->	
-		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+		{{-- <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script> --}}
+   
     	<!--begin::Base Scripts -->
 		<script src="../assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 		<script src="../assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 		<!--end::Base Scripts -->   
         <!--begin::Page Vendors -->
-		<script src="../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+		{{-- <script src="../assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script> --}}
 		<!--end::Page Vendors -->  
         <!--begin::Page Snippets -->
 		<script src="../assets/app/js/dashboard.js" type="text/javascript"></script>
 		<!--end::Page Snippets -->
 		{{-- D3.js --}}
 		<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+ <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 		<script>
+
+//  $('.confirm').click(() => {
+//    $('.confirm').
+// })
+
+$(document).ready(function() {
+    $('.m_datatable__table').DataTable();
+});
 		  var data = [30, 86, 168, 281, 303, 365];
 
 			d3.select(".chart")

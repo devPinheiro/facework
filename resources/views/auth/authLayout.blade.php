@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			Face Work Login
+			Facework Accounts
 		</title>
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +36,7 @@
 				<div class="m-grid__item m-grid__item--fluid m-login__wrapper">
 					<div class="m-login__container">
 						<div class="m-login__logo">
-							<a href="#">
+							<a href="/">
 								<img style="border-radius: 40px;" src="../../images/logo.png">
 							</a>
 						</div>

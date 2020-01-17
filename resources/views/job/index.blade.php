@@ -24,7 +24,7 @@
                                 <!--begin::Section-->
                                 <div class="m-section">
                                     <div class="m-section__content">
-                                        <table class="table m_datatable__table table-striped table-bordered m-table">
+                                        <table class="table m_datatable__table  m_datatable table-striped table-bordered m-table">
                                             <thead>
                                         <tr>
                                             <th>Job Title</th>
