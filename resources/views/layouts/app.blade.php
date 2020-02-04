@@ -222,7 +222,18 @@ ga('send', 'pageview');
 
                 @yield('content')
 
-                
+               <div class="container-fluid p-0">
+                <div class="row">
+                    <div class="col-12">
+                        <img src="/images/faceworka_2.jpeg" alt="" srcset="">
+                    </div>
+                </div>
+<div class="row">
+                    <div class="col-12">
+                        <img src="/images/faceworka_3.jpeg" alt="" srcset="">
+                    </div>
+                </div>
+               </div> 
              </div>
            </div>
             
