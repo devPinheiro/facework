@@ -47,7 +47,7 @@
 						@endif
 						@if(Auth::user())
 						
-						   @if($post->profile->id === Auth::user()->profile->id)
+						   @if($post->profile->id == Auth::user()->profile->id)
 									@can('Edit')
 									<a href="{{ route('posts.edit', $post->id) }}" class="btn m-btn--pill btn-secondary m-btn m-btn--hover-brand m-btn--custom" role="button"><i class="fa fa-edit p-1"></i></a>
 									@endcan
