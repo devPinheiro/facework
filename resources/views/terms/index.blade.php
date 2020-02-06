@@ -30,7 +30,7 @@
         Facework may provide notice to Users via email, regular mail, or posting notices or links to notices on the Site. Facework reserves the right at any time to modify, suspend or terminate the services (or any part thereof), and/or use of or access to them, with or without notice. Facework may also delete, or bar access to or use of, all related information and files. Facework will not be liable to Users or any third-party for any modification, suspension, or termination of service, or loss of related information. Facework may amend these Terms at any time by posting the amended terms on this Site.  </p> <br>
         <p><b>8. Contact Information  </b> <br>
         All questions, comments and enquiries should be directed 
-        By email to <a href="mailto:facework@gmail.com">Facewor</a>, and/or by post to its registered office.
+        By email to <a href="mailto:contact.facework@gmail.com">contact.facework@gmail.com</a> , and/or by post to its registered office.
         We will to speedily respond to any queries or complaints as soon as we get it.  </p> <br>
         
     </div>

@@ -109,7 +109,7 @@ ga('send', 'pageview');
                      <li class="nav-item"><a href="{{ route('profile.create') }}">Upload Work</a></li>
                     @endrole
 
-                   <li class="nav-item">
+                   <li class="nav-item m-auto">
                       <div class="dropdown ">
                         <i class="ion-ios-bell-outline dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span class="badge badge-light">{{ auth()->user()->unreadNotifications->count() }}</span>
@@ -117,17 +117,17 @@ ga('send', 'pageview');
                         <div class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton" style="width: 230px;">
                           @if(auth()->user()->unreadNotifications->count() )
                           @foreach (auth()->user()->unreadNotifications as $notification)
-                               <div>
-                                  <div class="post_img ">
+                               
+                                  <div class="post_img p-2 ">
                                       <a class="dropdown-item m-0 p-1" href="/posts/{{ $notification->data['notifs']['id'] }}" ><img src="{{ $notification->data['notifs']['featured'] }}" style="width:2.0rem; height:2.0rem; border-radius: 50%;
                                     
                                   " alt="" class="img-rounded" srcset="">
                                  <small class="text-muted">  {{ $notification->data['notifs']['title'] }} </small><br>
-                                 {{-- <small class="text-muted">  {{ $notification->data['notifs']['created_at']->diffForHumans() }} </small> --}}
+                                 <small class="text-muted">  {{ $notification->data['notifs']['created_at']->diffForHumans() }} </small>
                                   </a>
                                   </div>
                                  
-                              </div>  
+                               
                           @endforeach      
                           @else
                           <a class="dropdown-item m-0 text-center" href="#">No notifications</a>
@@ -137,7 +137,7 @@ ga('send', 'pageview');
                       </div>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item m-auto">
                         <div class="dropdown dropleft">
                             <a href="#" class="m-nav__link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="m-topbar__userpic">
@@ -221,21 +221,26 @@ ga('send', 'pageview');
                 @endif
 
                 @yield('content')
+<a href="http://facework.com.ng/profile/18" >
 
-               <div class="container-fluid p-0">
-                <div class="row">
-                    <div class="col-12">
-                        <img src="/images/faceworka_2.jpeg" alt="" srcset="">
-                    </div>
-                </div>
-<div class="row">
-                    <div class="col-12">
-                        <img src="/images/faceworka_3.jpeg" alt="" srcset="">
-                    </div>
-                </div>
+ <div class=" p-0">
+                        <div class="row ">
+                            <div class="col-12 text-center">
+                             <img src="/images/faceworka_2.png" class="img-fluid" alt="" srcset="">
+                            </div>
+                        </div>
+               </div> 
+               <div class=" p-0">
+                        <div class="row ">
+                            <div class="col-12 text-center">
+                             <img src="/images/faceworka_3.png" class="img-fluid" alt="" srcset="">
+                            </div>
+                        </div>
                </div> 
              </div>
            </div>
+      </a>      
+              
             
            
            <div class="container-fluid support">
