@@ -221,25 +221,23 @@ ga('send', 'pageview');
                 @endif
 
                 @yield('content')
-<a href="http://facework.com.ng/profile/18" >
 
- <div class=" p-0">
-                        <div class="row ">
-                            <div class="col-12 text-center">
-                             <img src="/images/faceworka_2.png" class="img-fluid" alt="" srcset="">
-                            </div>
-                        </div>
+
+ 
                </div> 
-               <div class=" p-0">
-                        <div class="row ">
-                            <div class="col-12 text-center">
-                             <img src="/images/faceworka_3.png" class="img-fluid" alt="" srcset="">
-                            </div>
-                        </div>
-               </div> 
-             </div>
+
+
+              <div class="row  p-4 text-center">
+                  <div class="col-12 text-center  m-auto">
+                      <a href="http://facework.com.ng/profile/79" >
+                        <img src="/images/foot1.jpeg" class="img-fluid" alt="" srcset="">
+                      </a> 
+                  </div>
+              </div>
+            
+          
            </div>
-      </a>      
+          
               
             
            
