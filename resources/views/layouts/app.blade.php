@@ -123,7 +123,7 @@ ga('send', 'pageview');
                                     
                                   " alt="" class="img-rounded" srcset="">
                                  <small class="text-muted">  {{ $notification->data['notifs']['title'] }} </small><br>
-                                 <small class="text-muted">  {{ $notification->data['notifs']['created_at']->diffForHumans() }} </small>
+                                 {{-- <small class="text-muted">  {{ $notification->data['notifs']['created_at']->diffForHumans() }} </small> --}}
                                   </a>
                                   </div>
                                  
@@ -229,9 +229,9 @@ ga('send', 'pageview');
 
               <div class="row  p-4 text-center">
                   <div class="col-12 text-center  m-auto">
-                      <a href="http://facework.com.ng/profile/79" >
-                        <img src="/images/foot1.jpeg" class="img-fluid" alt="" srcset="">
-                      </a> 
+                    
+                        <img src="https://res.cloudinary.com/appnet/image/upload/v1586711216/facework/Group_65.jpg" class="img-fluid" alt="" srcset="">
+                      
                   </div>
               </div>
             
