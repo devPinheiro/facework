@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -15,6 +17,7 @@ class User extends Authenticatable implements LikerContract
     use Notifiable;
     use HasRoles;
     use Liker;
+    use HasApiTokens;
 
     public function setPasswordAttribute($password)
         {   
