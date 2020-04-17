@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
 use Cog\Laravel\Love\Liker\Models\Traits\Liker;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class User extends Authenticatable implements LikerContract
@@ -18,6 +19,7 @@ class User extends Authenticatable implements LikerContract
     use HasRoles;
     use Liker;
     use HasApiTokens;
+    use SoftDeletes;
 
     public function setPasswordAttribute($password)
         {   
@@ -42,6 +44,11 @@ class User extends Authenticatable implements LikerContract
         return $this->hasMany('App\Message');
     }
    
+
+
+    protected $dates = ['deleted_at'];
+
+
     
     /**
      * The attributes that are mass assignable.
@@ -49,7 +56,7 @@ class User extends Authenticatable implements LikerContract
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'title', 'user_id'
+        'name', 'email', 'password', 'title', 'user_id', 'active', 'api_token', 'activation_token'
     ];
 
     /**
@@ -58,7 +65,7 @@ class User extends Authenticatable implements LikerContract
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','activation_token'
     ];
 
     // public function posts(){
