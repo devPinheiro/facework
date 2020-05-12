@@ -35,7 +35,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'activation_code' => str_random(60)
+            'activation_token' => str_random(60)
         ]);
 
         Profile::create([

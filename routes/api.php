@@ -33,6 +33,15 @@ Route::group([
         Route::get('signup/activate/{token}', 'API\AuthController@signupActivate');
     });
 
+Route::group([    
+    'namespace' => 'Auth',    
+    'middleware' => 'api',    
+    'prefix' => 'password'
+], function () {    
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('reset/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
+});
 
 
 Route::middleware('cors')->post('/register',[
