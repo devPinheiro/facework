@@ -17,6 +17,38 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::group([
+        'prefix' => 'auth'
+    ], function () {
+        Route::post('login', 'API\AuthController@login');
+        Route::post('signup', 'API\AuthController@signup');
+
+        Route::group([
+        'middleware' => 'auth:api'
+        ], function() {
+            Route::get('logout', 'API\AuthController@logout');
+            Route::get('user', 'API\AuthController@user');
+        });
+
+        Route::get('signup/activate/{token}', 'API\AuthController@signupActivate');
+    });
+
+Route::group([    
+    'namespace' => 'API',    
+    'middleware' => 'api',    
+    'prefix' => 'password'
+], function () {    
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('reset/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
+});
+
+
+Route::middleware('cors')->post('/register',[
+        'uses'       =>      'API\RegisterController@create',
+        'as'         =>      'register'
+    ]);
+
 Route::middleware('cors')->get('/skills',[
         'uses'       =>      'Query@getSkills',
         'as'         =>      'get-skills'
