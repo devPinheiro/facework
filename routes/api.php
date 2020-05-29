@@ -34,7 +34,7 @@ Route::group([
     });
 
 Route::group([    
-    'namespace' => 'Auth',    
+    'namespace' => 'API',    
     'middleware' => 'api',    
     'prefix' => 'password'
 ], function () {    

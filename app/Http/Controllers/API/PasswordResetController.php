@@ -1,5 +1,6 @@
 <?php
-namespace App\Http\Controllers\Auth;
+
+namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -77,7 +78,7 @@ class PasswordResetController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string|confirmed',
+            'password' => 'required|string',
             'token' => 'required|string'
         ]);
         $passwordReset = PasswordReset::where([

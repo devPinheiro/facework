@@ -74,6 +74,13 @@ class AuthController extends Controller
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
+        // check if user has confirmed their mail
+        $isActive = User::where('email', $request->email)->value('active');
+        if(!$isActive) {
+            return response()->json([
+                'message' => 'Kindly confirm your email'
+            ], 401); 
+         }
 
         $user = $request->user();
 
