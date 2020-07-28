@@ -21,7 +21,7 @@ use App\Advert;
 class PostController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth', 'clearance'])->except('index','explore','home','show','create','store','edit','destroy', 'like', 'unlike');
+        $this->middleware(['auth', 'clearance'])->except('feeds','index','explore','home','show','create','store','edit','destroy', 'like', 'unlike');
     }
 
     /**
@@ -39,6 +39,17 @@ class PostController extends Controller {
         $users = User::orderby('id', 'desc')->get();
         $setting = Setting::first();
         return view('index')->with('users', $users)->with('settings', $setting)->with('posts', $posts)->with('broadcasts', $broadcasts)->with('adverts', $advert)->with('jobs', $jobs);
+    }
+
+    // API for feeds
+    public function feeds(){
+        $profile = Profile::orderby('id', 'desc')->paginate(7);
+        $posts = Post::orderby('id', 'desc')->paginate(7);
+        $users = User::orderby('id', 'desc')->get();
+
+        return response()->json([
+            "post" => $posts
+        ]);
     }
 
      public function explore(){

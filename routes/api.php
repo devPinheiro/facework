@@ -43,11 +43,17 @@ Route::group([
     Route::post('reset', 'PasswordResetController@reset');
 });
 
+// Feeds endpoint
+Route::group([       
+    // 'middleware' => 'auth:api',    
+    'prefix' => 'feeds'
+], function () {    
+    Route::get('/', 'PostController@feeds');
+    // Route::get('reset/{token}', 'PasswordResetController@find');
+    // Route::post('reset', 'PasswordResetController@reset');
+});
 
-Route::middleware('cors')->post('/register',[
-        'uses'       =>      'API\RegisterController@create',
-        'as'         =>      'register'
-    ]);
+
 
 Route::middleware('cors')->get('/skills',[
         'uses'       =>      'Query@getSkills',
