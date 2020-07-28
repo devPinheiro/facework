@@ -56,7 +56,7 @@ class AuthController extends Controller
         // Mail::to('ifeoluwa@facework.com.ng')->send(new AdminEmail($user));
         $user->notify(new SignupActivate($user->activation_token));
 
-        return response(['message' => 'user created successfuly', 'data' => $user], 201);
+        return response(['message' => 'user created successfully', 'data' => $user], 201);
     }
 
     public function login(Request $request)

@@ -44,13 +44,11 @@ Route::group([
 });
 
 // Feeds endpoint
-Route::group([       
-    // 'middleware' => 'auth:api',    
+Route::group([         
     'prefix' => 'feeds'
 ], function () {    
     Route::get('/', 'PostController@feeds');
-    // Route::get('reset/{token}', 'PasswordResetController@find');
-    // Route::post('reset', 'PasswordResetController@reset');
+    Route::middleware('auth:api')->post('/create', 'PostController@createPost');
 });
 
 
