@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Http\Request;
+use PeterPetrus\Auth\PassportToken;
 
 use App\Notifications\GeneralNofication;
 use App\Profile;
@@ -136,6 +137,75 @@ class PostController extends Controller {
              '. $post->title.' created');
     }
     
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function createPost(Request $request) {         
+
+        $decoded_token = PassportToken::dirtyDecode(substr($request->header()['authorization'][0], 7));
+
+        if ($decoded_token['valid']) {
+            // Check if token exists in DB (table 'oauth_access_tokens'), require \Illuminate\Support\Facades\DB class
+            $token_exists = PassportToken::existsValidToken(
+                $decoded_token['token_id'], 
+                $decoded_token['user_id']
+            );
+            
+            if ($token_exists) {
+                // Validating title and body field
+            $this->validate($request, [
+               
+                'title' => 'required|max:255',
+                'featured' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+                'body' => 'required'
+                
+                ]);
+        
+        
+               $image = $request->file('featured');
+        
+               $name = $request->file('featured')->getClientOriginalName();
+        
+               $image_name = $request->file('featured')->getRealPath();
+               
+               // uploads to cloudinary
+               Cloudder::upload($image_name, null);
+        
+               list($width, $height) = getimagesize($image_name);
+               // gets image url from cloudinary
+               $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+        
+                // get user profile 
+                $user = User::find($decoded_token['user_id']);
+                $profile_id = $user->profile->id;
+                $post = Post::create([      
+        
+                    'title' => $request->title,
+        
+                    'profile_id' => $profile_id,
+        
+                    'body' => $request->body,
+        
+                    'featured' => $image_url,
+        
+                ]);
+        
+                // send noitfication
+                  $user = User::where('id','!=',$decoded_token['user_id'])->get();
+        
+                 \Notification::send($user, new GeneralNofication(Post::latest('id')->first()));
+        
+            //Display a successful message upon save
+                return response()->json([
+                    "data" => $post
+                ]);
+            }
+        }
+       
+        }
 
     // Like system
     public function like($id){
