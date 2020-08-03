@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->string('featured');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +31,8 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('posts', function(Blueprint $table){
+            $table->dropSoftDeletes(); 
+        });
     }
 }
