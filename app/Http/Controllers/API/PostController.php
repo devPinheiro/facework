@@ -163,11 +163,11 @@ class PostController extends Controller
             
             if ($token_exists) {
         
-                    $this->validate($request, [
-                    'title' => 'required',
-                    'body' => 'required'
+                //     $this->validate($request, [
+                //     'title' => 'required',
+                //     'body' => 'required'
                     
-                ]);
+                // ]);
 
                 $post = Post::find($id);
 

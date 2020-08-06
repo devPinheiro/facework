@@ -51,7 +51,7 @@ Route::group([
     Route::get('/', 'PostController@feeds');
     Route::middleware('auth:api')->post('/create', 'PostController@createPost');
     Route::get('/{id}', 'PostController@showPost');
-    Route::middleware('auth:api')->put('/edit/{id}', 'PostController@updatePost');
+    Route::middleware('auth:api')->patch('/edit/{id}', 'PostController@updatePost');
     Route::middleware('auth:api')->delete('/{id}', 'PostController@deletePost');
 });
 
