@@ -7,6 +7,7 @@ use App\User;
 use App\Profile;
 use App\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use JD\Cloudder\Facades\Cloudder;
 
 //Importing laravel-permission models
@@ -84,9 +85,15 @@ class ProfileController extends Controller
             
             $profile->instagram = $request->instagram;
             
+<<<<<<< HEAD
             if($request->role != 'Active'){
                $profile->user->assignRole('Active');
             }
+=======
+            // if($request->role != 'Active'){
+            //    $profile->user->assignRole('Active');
+            // }
+>>>>>>> 3535f33... WIP
             
                
             $profile->save();            
