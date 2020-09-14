@@ -17,6 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Auth endpoint
 Route::group([
         'prefix' => 'auth'
     ], function () {
@@ -43,6 +44,17 @@ Route::group([
     Route::post('reset', 'PasswordResetController@reset');
 });
 
+// User profile endpoint
+Route::group([     
+    'namespace' => 'API',    
+    'prefix' => 'profile'
+], function () {    
+    Route::get('/{id}', 'ProfileController@dashboard');
+    Route::middleware('auth:api')->patch('/edit/{id}', 'ProfileController@update');
+    Route::middleware('auth:api')->patch('edit/upload-profile-image/{id}', 'ProfileController@changeProfileImage');
+});
+
+
 // Feeds endpoint
 Route::group([     
     'namespace' => 'API',    
@@ -54,6 +66,15 @@ Route::group([
     Route::middleware('auth:api')->patch('/edit/{id}', 'PostController@updatePost');
     Route::middleware('auth:api')->delete('/{id}', 'PostController@deletePost');
 });
+
+// Comment endpoint
+Route::group([     
+    'namespace' => 'API',    
+    'prefix' => 'comments'
+], function () {    
+    Route::middleware('auth:api')->post('/create', 'CommentController@store');
+});
+
 
 Route::middleware('cors')->get('/skills',[
         'uses'       =>      'Query@getSkills',
