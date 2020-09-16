@@ -85,15 +85,9 @@ class ProfileController extends Controller
             
             $profile->instagram = $request->instagram;
             
-<<<<<<< HEAD
-            if($request->role != 'Active'){
-               $profile->user->assignRole('Active');
-            }
-=======
             // if($request->role != 'Active'){
             //    $profile->user->assignRole('Active');
             // }
->>>>>>> 3535f33... WIP
             
                
             $profile->save();            
