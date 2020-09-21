@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use Image;
-use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Profile;
@@ -209,9 +211,13 @@ class UserController extends Controller {
             // sending a notification
             $user->notify(new UserFollowed($follower));
 
-            return back()->withSuccess("You are now friends with {$user->name}");
+            return response()->json(
+                ["data" => "You are now following ".$user->name]
+            );
         }
-        return back()->withError("You are already following {$user->name}");
+        return response()->json(
+            ["error" => "You are already following ".$user->name]
+        );
     }
 
 
@@ -221,8 +227,12 @@ class UserController extends Controller {
         $follower = auth()->user();
         if($follower->isFollowing($user->id)) {
             $follower->unfollow($user->id);
-            return back()->withSuccess("You are no longer friends with {$user->name}");
+            return response()->json(
+                ["error" => "You are no longer following ".$user->name]
+            );
         }
-        return back()->withError("You are not following {$user->name}");
+        return response()->json(
+            ["error" => "You are not following ".$user->name]
+        );
     }
 }
