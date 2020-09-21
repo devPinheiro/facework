@@ -54,12 +54,18 @@ Route::group([
     Route::middleware('auth:api')->patch('/edit/upload-profile-image/{id}', 'ProfileController@changeProfileImage');
 });
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('users', 'UsersController@index')->name('users');
+// Followers endpoint
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('users', 'UsersController@followers')->name('users');
     Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 });
 
+// Notification endpoint
+Route::group([ 'middleware' => 'auth:api' ], function () {
+    // ...
+    Route::get('/notifications', 'UsersController@notifications');
+});
 
 // Feeds endpoint
 Route::group([     
