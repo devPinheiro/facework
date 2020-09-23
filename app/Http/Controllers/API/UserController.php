@@ -235,8 +235,6 @@ class UserController extends Controller {
             ["error" => "You are not following ".$user->name]
         );
     }
-<<<<<<< HEAD
-=======
 
     /**
     * Fetch all notifications for a specific user
@@ -250,5 +248,4 @@ class UserController extends Controller {
                 'data' => $notifications
             ]);
     }
->>>>>>> e10a801... WIP
 }
