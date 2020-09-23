@@ -11,7 +11,7 @@ use Auth;
 use App\Profile;
 use App\Post;
 use App\feedback;
-
+use App\Notifications\UserFollowed;
 
 
 //Importing laravel-permission models
@@ -235,4 +235,20 @@ class UserController extends Controller {
             ["error" => "You are not following ".$user->name]
         );
     }
+<<<<<<< HEAD
+=======
+
+    /**
+    * Fetch all notifications for a specific user
+    *
+    * 
+    * @return \Illuminate\Http\Response
+    */
+    public function notifications() {
+            $notifications = auth()->user()->notifications()->paginate(20);
+            return response()->json([
+                'data' => $notifications
+            ]);
+    }
+>>>>>>> e10a801... WIP
 }
