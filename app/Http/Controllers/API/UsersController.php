@@ -21,10 +21,10 @@ use Spatie\Permission\Models\Permission;
 //Enables us to output flash messaging
 use Session;
 
-class UserController extends Controller {
+class UsersController extends Controller {
 
     public function __construct() {
-        $this->middleware(['auth',  'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
+        // $this->middleware(['auth',  'isAdmin']); //isAdmin middleware lets only users with a //specific permission permission to access these resources
     
     }
 
@@ -202,22 +202,30 @@ class UserController extends Controller {
     public function follow(User $user)
     {
         $follower = auth()->user();
-        if ($follower->id == $user->id) {
-            return back()->withError("You can't follow yourself");
-        }
-        if(!$follower->isFollowing($user->id)) {
-            $follower->follow($user->id);
-
-            // sending a notification
-            $user->notify(new UserFollowed($follower));
-
+        $toFollow = User::find($user->id);
+        if($toFollow){
+            if ($follower->id == $user->id) {
+                return response()->json(
+                    ["data" => "You can't follow yourself ".$user->name]
+                );
+            }
+            if(!$follower->isFollowing($user->id)) {
+                $follower->follow($user->id);
+    
+                // sending a notification
+                $user->notify(new UserFollowed($follower));
+    
+                return response()->json(
+                    ["data" => "You are now following ".$user->name]
+                );
+            }
             return response()->json(
-                ["data" => "You are now following ".$user->name]
+                ["error" => "You are already following ".$user->name]
             );
         }
-        return response()->json(
-            ["error" => "You are already following ".$user->name]
-        );
+        return response()->json([
+            'message' => 'No record found'
+        ]);
     }
 
 
