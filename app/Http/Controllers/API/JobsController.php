@@ -85,11 +85,14 @@ class JobsController extends Controller
     public function show(Jobs $jobs, $id)
     {
         //
-         $job = Jobs::findOrFail($id); //Find job of id = $id
-         $jobs = Jobs::orderby('id', 'desc')->paginate(10);
-         
-        return response()->json([
-            "data" => $job
+         $job = Jobs::find($id); //Find job of id = $id
+         if($job) {
+            return response()->json([
+                "data" => $job
+            ]);
+         }
+         return response()->json([
+            "message" => "No record found"
         ]);
     }
 
@@ -98,10 +101,16 @@ class JobsController extends Controller
          //
       
          $jobs = Jobs::orderby('id', 'desc')->get();
-         
+         if($jobs) {
+            return response()->json([
+                "data" => $jobs
+            ]);
+         }
          return response()->json([
-            "data" => $job
+            "message" => "No record found"
         ]);
+         
+         
     }
 
     /**

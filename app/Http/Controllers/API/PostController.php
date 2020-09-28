@@ -169,7 +169,7 @@ class PostController extends Controller
                     
                 // ]);
 
-                $post = Post::find($id);
+                $post = Post::where('id', $id)->first();
 
                 if($request->hasFile('featured')){
                     

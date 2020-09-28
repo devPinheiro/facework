@@ -55,16 +55,26 @@ Route::group([
 });
 
 // Followers endpoint
-Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('users', 'UsersController@followers')->name('users');
-    Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
-    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+Route::group(['middleware' => 'auth:api', 'namespace' => 'API',    
+'prefix' => 'users'], function () {
+    Route::get('/followers', 'UsersController@followers')->name('users');
+    Route::post('/{user}/follow', 'UsersController@follow')->name('follow');
+    Route::delete('/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 });
 
 // Notification endpoint
 Route::group([ 'middleware' => 'auth:api' ], function () {
     // ...
     Route::get('/notifications', 'UsersController@notifications');
+});
+
+// Jobs endpoint
+Route::group([     
+    'namespace' => 'API',    
+    'prefix' => 'jobs'
+], function () {    
+    Route::get('/', 'JobsController@showAll');
+    Route::get('/{id}', 'JobsController@show');
 });
 
 // Feeds endpoint
