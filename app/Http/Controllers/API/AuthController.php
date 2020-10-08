@@ -54,6 +54,7 @@ class AuthController extends Controller
         // $message = '';
         // Mail::to($user->email)->send(new TestEmail($user));
         // Mail::to('ifeoluwa@facework.com.ng')->send(new AdminEmail($user));
+
         $user->notify(new SignupActivate($user->activation_token));
 
         return response(['message' => 'user created successfully', 'data' => $user], 201);
@@ -132,16 +133,44 @@ class AuthController extends Controller
      */
     public function signupActivate($token)
     {
+        if(count($token) === 60){
+         // check if user has confirmed their mail already
+         $isActive = User::where('activation_token', $token)->value('active');
+         if(!$isActive) {
+             return response()->json([
+                 'message' => 'You have confirmed your email  already. Kindly login to access your account'
+             ], 200); 
+          }
+
         $user = User::where('activation_token', $token)->first();
         if (!$user) {
             return response()->json([
-                'message' => 'This activation token is invalid.'
+                'message' => 'This activation token does not exist.'
             ], 404);
         }
+
+        $tokenResult = $user->createToken('Personal Access Token');
+
+        $token = $tokenResult->token;
+
+        
         $user->active = true;
         $user->activation_token = '';
         $user->save();
-        return $user;
+        return response()->json([
+            'access_token' => $tokenResult->accessToken,
+            'token_type' => 'Bearer',
+            'expires_at' => Carbon::parse(
+                $tokenResult->token->expires_at
+            )->toDateTimeString(),
+            'data' => $user
+        ]);
+        }
+        return response()->json([
+            'message' => 'This activation token is invalid.'
+        ], 404);
+
+         
     }
 
 }
