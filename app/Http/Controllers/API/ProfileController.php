@@ -66,6 +66,15 @@ class ProfileController extends Controller
         ]);
 
             $profile = Profile::find($id);
+            if($profile){
+
+            
+            $user = User::findOrfail($profile->email);
+
+            if($user){
+                $user->email = $request->email;
+                $user->save();
+            }
             
             $profile->name = $request->name;
 
@@ -95,7 +104,11 @@ class ProfileController extends Controller
             return response()->json([
                 "success" => "Profile successfully updated"
             ]);
-                
+        }
+
+        return response()->json([
+            "message" => "User not found"
+        ], 404);     
             
     }
 
