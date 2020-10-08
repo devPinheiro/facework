@@ -133,7 +133,8 @@ class AuthController extends Controller
      */
     public function signupActivate($token)
     {
-        if(count($token) === 60){
+        
+        if(strlen($token)  === 60){
          // check if user has confirmed their mail already
          $isActive = User::where('activation_token', $token)->value('active');
          if(!$isActive) {
