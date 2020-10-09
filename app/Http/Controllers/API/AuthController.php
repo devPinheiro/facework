@@ -137,7 +137,7 @@ class AuthController extends Controller
         if(strlen($token)  === 60){
          // check if user has confirmed their mail already
          $isActive = User::where('activation_token', $token)->value('active');
-         if(!$isActive) {
+         if($isActive) {
              return response()->json([
                  'message' => 'You have confirmed your email  already. Kindly login to access your account'
              ], 200); 
@@ -153,10 +153,8 @@ class AuthController extends Controller
         $tokenResult = $user->createToken('Personal Access Token');
 
         $token = $tokenResult->token;
-
-        
+      
         $user->active = true;
-        $user->activation_token = '';
         $user->save();
         return response()->json([
             'access_token' => $tokenResult->accessToken,

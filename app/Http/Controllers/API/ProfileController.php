@@ -65,15 +65,19 @@ class ProfileController extends Controller
             'service' => 'required'
         ]);
 
-            $profile = Profile::find($id);
+            $profile = Profile::where('user_id', $id)->first();
             if($profile){
 
             
-            $user = User::findOrfail($profile->email);
+            $user = User::find($profile->user_id);
 
             if($user){
                 $user->email = $request->email;
                 $user->save();
+            } else{
+                return response()->json([
+                    "message" => "user not found"
+                ]);
             }
             
             $profile->name = $request->name;

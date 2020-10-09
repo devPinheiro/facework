@@ -251,7 +251,7 @@ class UsersController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function notifications() {
-            $notifications = auth()->user()->notifications()->paginate(20);
+            $notifications = Auth::user()->notifications()->paginate(20);
             return response()->json([
                 'data' => $notifications
             ]);

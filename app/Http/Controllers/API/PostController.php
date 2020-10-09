@@ -28,9 +28,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function feeds(){
+    
+        $posts = Post::with('profile')->orderBy('id', 'desc')->paginate(7);
+
+        return response()->json([
+            "post" => $posts
+        ]);
     }
 
     /**
@@ -122,12 +126,17 @@ class PostController extends Controller
      */
     public function showPost($id) {
         $like = false;
-        $post = Post::findOrFail($id); //Find post of id = $id
-        $profile_id = $post->profile->id; // find profile id of the owner of the post
-        $profile = Profile::findorfail($profile_id);
-        $comments = Post::find($id)->comments; // comments attached to each post
+        $post = Post::with('comments')->with('profile')->find($id); //Find post of id = $id
+        if($post){
+            // $profile_id = $post->profile->id; // find profile id of the owner of the post
+            // $profile = Profile::findorfail($profile_id);
+            $comments = Post::find($id)->comments; // comments attached to each post
+            return response()->json([
+                "data" => [$post]
+            ]);
+        }
         return response()->json([
-            "data" => [$post, $comments]
+            "message" => "post not found"
         ]);
    }
 
@@ -161,36 +170,47 @@ class PostController extends Controller
                 $decoded_token['user_id']
             );
             
-            if ($token_exists) {
+            $post = Post::where('id', $id)->first();
+            if($post){
+                if ($token_exists && $post->profile_id === $decoded_token['user_id']) {
         
-                //     $this->validate($request, [
-                //     'title' => 'required',
-                //     'body' => 'required'
-                    
-                // ]);
-
-                $post = Post::where('id', $id)->first();
-
-                if($request->hasFile('featured')){
-                    
-                    $featured = $request->featured;
-
-                    $featured_new_name = time().$featured->getCientOriginalName();
-
-                    $featured = move('uploads/posts/', $featured_new_name);
-
-                }
-
-                    $post->title = $request->title;
-
-                    $post->body = $request->body;
+                        $this->validate($request, [
+                        'title' => 'required',
+                        'body' => 'required'
                         
-                    $post->save();
+                    ]);          
 
-                return response()->json([
-                    "data" => $post
-                ]);
+                    if($request->hasFile('featured')){
+                        
+                        $featured = $request->featured;
+
+                        $featured_new_name = time().$featured->getCientOriginalName();
+
+                        $featured = move('uploads/posts/', $featured_new_name);
+
+                    }
+
+                        $post->title = $request->title;
+
+                        $post->body = $request->body;
+                        
+                        $post->$featured = $request->$featured;
+                            
+                        $post->save();
+
+                    return response()->json([
+                        "data" => $post
+                    ]);
+                } else {
+                    return response()->json([
+                        "message" => "You do not have access permission to edit this post"
+                    ], 401);
+                }
             }
+            return response()->json([
+                "message" => "Post not found"
+            ], 404);
+            
         }
 
    }
