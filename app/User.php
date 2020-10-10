@@ -81,7 +81,7 @@ class User extends Authenticatable implements LikerContract
 
     public function follows() 
     {
-        return $this->belongsToMany(self::class, 'followers', 'user_id', 'follows_id')
+        return $this->belongsToMany(self::class, 'followers', 'follows_id', 'user_id')
                     ->withTimestamps();
     }
 
@@ -89,6 +89,7 @@ class User extends Authenticatable implements LikerContract
     {
         $this->follows()->attach($userId);
         return $this;
+        
     }
 
     public function unfollow($userId)
