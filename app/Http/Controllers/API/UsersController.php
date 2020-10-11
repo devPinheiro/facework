@@ -202,26 +202,31 @@ class UsersController extends Controller {
     public function follow(User $user)
     {
         $follower = auth()->user();
-        $toFollow = User::find($user->id);
-        if($toFollow){
-            if ($follower->id == $user->id) {
+        if(auth()->user()){
+            $toFollow = User::find($user->id);
+            if($toFollow){
+                if ($follower->id == $user->id) {
+                    return response()->json(
+                        ["data" => "You can't follow yourself ".$user->name]
+                    );
+                }
+                if(!$follower->isFollowing($user->id)) {
+                    $follower->follow($user);
+        
+                    // sending a notification
+                    $user->notify(new UserFollowed($follower));
+        
+                    return response()->json(
+                        ["data" => "You are now following ".$user->name]
+                    );
+                }
                 return response()->json(
-                    ["data" => "You can't follow yourself ".$user->name]
+                    ["error" => "You are already following ".$user->name]
                 );
             }
-            if(!$follower->isFollowing($user->id)) {
-                $follower->follow($user->id);
-    
-                // sending a notification
-                $user->notify(new UserFollowed($follower));
-    
-                return response()->json(
-                    ["data" => "You are now following ".$user->name]
-                );
-            }
-            return response()->json(
-                ["error" => "You are already following ".$user->name]
-            );
+            return response()->json([
+                'message' => 'No record found'
+            ]);
         }
         return response()->json([
             'message' => 'No record found'
@@ -236,11 +241,39 @@ class UsersController extends Controller {
         if($follower->isFollowing($user->id)) {
             $follower->unfollow($user->id);
             return response()->json(
-                ["error" => "You are no longer following ".$user->name]
+                ["message" => "You are no longer following ".$user->name], 200
             );
         }
         return response()->json(
-            ["error" => "You are not following ".$user->name]
+            ["error" => "You are not following ".$user->name],409
+        );
+    }
+
+    public function followers()
+    {
+        $follower = auth()->user();
+        if($follower) {
+            
+            return response()->json(
+                ["data" => $follower->followers], 200
+            );
+        }
+        return response()->json(
+            ["error" => "You are no followers "],404
+        );
+    }
+
+    public function following()
+    {
+        $follower = auth()->user();
+        if($follower) {
+            
+            return response()->json(
+                ["data" => $follower->followings], 200
+            );
+        }
+        return response()->json(
+            ["error" => "You are no following "],404
         );
     }
 
