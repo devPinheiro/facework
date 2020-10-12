@@ -58,6 +58,7 @@ Route::group([
 Route::group(['middleware' => 'auth:api', 'namespace' => 'API',    
 'prefix' => 'users'], function () {
     Route::get('/followers', 'UsersController@followers')->name('users');
+    Route::get('/following', 'UsersController@following')->name('following');
     Route::post('/{user}/follow', 'UsersController@follow')->name('follow');
     Route::delete('/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
 });

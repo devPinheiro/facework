@@ -180,6 +180,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         JD\Cloudder\CloudderServiceProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
 
     ],
 
