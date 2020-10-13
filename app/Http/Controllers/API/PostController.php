@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use JD\Cloudder\Facades\Cloudder;
 use PeterPetrus\Auth\PassportToken;
 
-use App\Notifications\GeneralNofication;
+use App\Notifications\NewPost;
 use App\Profile;
 use App\Post;
 use Auth;
@@ -93,10 +93,11 @@ class PostController extends Controller
         
                 ]);
         
-                // send noitfication
-                  $user = User::where('id','!=',$decoded_token['user_id'])->get();
-        
-                 \Notification::send($user, new GeneralNofication(Post::latest('id')->first()));
+                
+                // // get user profile
+                // $userProfile = User::with('profile')->find($user->id);
+                // // sending a notification
+                // $user->notify(new NewPost($userProfile, $post));
         
                 //Display a successful message upon save
                 return response()->json([

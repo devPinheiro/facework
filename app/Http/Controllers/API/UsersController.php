@@ -212,9 +212,11 @@ class UsersController extends Controller {
                 }
                 if(!$follower->isFollowing($user->id)) {
                     $follower->follow($user);
-        
+
+                    // get user profile
+                    $userProfile = User::with('profile')->find($follower->id);
                     // sending a notification
-                    $user->notify(new UserFollowed($follower));
+                    $user->notify(new UserFollowed($userProfile));
         
                     return response()->json(
                         ["data" => "You are now following ".$user->name]
@@ -255,7 +257,7 @@ class UsersController extends Controller {
         if($follower) {
             
             return response()->json(
-                ["data" => $follower->followers], 200
+                ["data" => $follower->followers, "count" => $follower->followers()->count()], 200
             );
         }
         return response()->json(
@@ -269,7 +271,7 @@ class UsersController extends Controller {
         if($follower) {
             
             return response()->json(
-                ["data" => $follower->followings], 200
+                ["data" => $follower->followings, "count" => $follower->followings()->count()], 200
             );
         }
         return response()->json(
@@ -284,7 +286,7 @@ class UsersController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function notifications() {
-            $notifications = Auth::user()->notifications()->paginate(20);
+            $notifications = auth()->user()->unreadNotifications()->paginate(20);
             return response()->json([
                 'data' => $notifications
             ]);
