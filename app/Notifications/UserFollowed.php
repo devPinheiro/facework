@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UserFollowed extends Notification
+class UserFollowed extends Notification 
 {
     use Queueable;
 
@@ -45,6 +45,7 @@ class UserFollowed extends Notification
         return [
             'follower_id' => $this->follower->id,
             'follower_name' => $this->follower->name,
+            'follower_avatar' => $this->follower->image,
         ];
     }
 }
