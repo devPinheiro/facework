@@ -286,9 +286,24 @@ class UsersController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function notifications() {
-            $notifications = auth()->user()->unreadNotifications()->paginate(20);
+            $notifications = auth()->user()->notifications()->paginate(20);
             return response()->json([
                 'data' => $notifications
             ]);
     }
+
+
+    /**
+    * Mark all notifications as read
+    *
+    * 
+    * @return \Illuminate\Http\Response
+    */
+    public function markAllNotificationsAsRead() {
+        auth()->user()->unreadNotifications->markAsRead();
+        return response()->json([
+            'message' => "Notifications marked as read"
+        ]);
+    }
+    
 }

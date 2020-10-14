@@ -67,6 +67,7 @@ Route::group(['middleware' => 'auth:api', 'namespace' => 'API',
 Route::group([ 'middleware' => 'auth:api',    'namespace' => 'API' ], function () {
     // ...
     Route::get('/notifications', 'UsersController@notifications');
+    Route::get('/notifications/read', 'UsersController@markAllNotificationsAsRead');
 });
 
 // Jobs endpoint
@@ -97,7 +98,6 @@ Route::group([
 ], function () {    
     Route::middleware('auth:api')->post('/create', 'CommentController@store');
 });
-
 
 Route::middleware('cors')->get('/skills',[
         'uses'       =>      'Query@getSkills',
