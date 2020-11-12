@@ -11,6 +11,7 @@ use PeterPetrus\Auth\PassportToken;
 use App\Notifications\NewPost;
 use App\Profile;
 use App\Post;
+use App\Comments;
 use Auth;
 use Session;
 use App\User;
@@ -127,13 +128,12 @@ class PostController extends Controller
      */
     public function showPost($id) {
         $like = false;
-        $post = Post::with('comments')->with('profile')->find($id); //Find post of id = $id
+        $post = Post::with('profile')->find($id); //Find post of id = $id
+        $comments = Comments::with('profile')->where('post_id',$id)->get();
         if($post){
-            // $profile_id = $post->profile->id; // find profile id of the owner of the post
-            // $profile = Profile::findorfail($profile_id);
-            $comments = Post::find($id)->comments; // comments attached to each post
             return response()->json([
-                "data" => [$post]
+                "post" => $post,
+                "comments" => $comments
             ]);
         }
         return response()->json([

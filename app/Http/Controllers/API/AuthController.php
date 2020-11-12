@@ -47,7 +47,7 @@ class AuthController extends Controller
              'phone' => '',
              'state' => '',
              'address' => '',
-             'image' => 'https://ui-avatars.com/api/?name='.$user->name.'?&rounded=true&background=FFFFFF',
+             'image' => 'https://ui-avatars.com/api/?name='.trim($user->name).'?&rounded=true&background=FFFFFF',
              'coverImage' => ''
         ]);
 
