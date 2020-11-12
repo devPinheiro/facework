@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function feeds(){
     
-        $posts = Post::with('profile')->orderBy('id', 'desc')->paginate(7);
+        $posts = Post::with('profile')->orderBy('id', 'desc')->paginate(30);
 
         return response()->json([
             "post" => $posts
