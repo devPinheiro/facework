@@ -41,7 +41,7 @@ class SignupActivate extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = '/api/auth/signup/activate/'.$this->token;
+        $url = \config('app.url').'/auth/emails/confirm/'.$this->token;
         return (new MailMessage)
             ->subject('Confirm your account')
             ->line('Thanks for signup! Please before you begin, you must confirm your account.')

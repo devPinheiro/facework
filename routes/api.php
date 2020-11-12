@@ -31,7 +31,7 @@ Route::group([
             Route::get('user', 'API\AuthController@user');
         });
 
-        Route::post('signup/activate/{token}', 'API\AuthController@signupActivate');
+        Route::get('signup/activate/{token}', 'API\AuthController@signupActivate');
     });
 
 Route::group([    
