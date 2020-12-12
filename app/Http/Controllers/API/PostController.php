@@ -60,25 +60,23 @@ class PostController extends Controller
             $this->validate($request, [
                
                 'title' => 'required|max:255',
-                'featured' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
                 'body' => 'required'
                 
                 ]);
         
+               if($request->featured !== 'video'){
+                $image = $request->file('featured');
         
-               $image = $request->file('featured');
-        
-               $name = $request->file('featured')->getClientOriginalName();
-        
-               $image_name = $request->file('featured')->getRealPath();
-               
-               // uploads to cloudinary
-               Cloudder::upload($image_name, null);
-        
-               list($width, $height) = getimagesize($image_name);
-               // gets image url from cloudinary
-               $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
-        
+                $name = $request->file('featured')->getClientOriginalName();
+         
+                $image_name = $request->file('featured')->getRealPath();
+                
+                // uploads to cloudinary
+                Cloudder::upload($image_name, null);
+         
+                list($width, $height) = getimagesize($image_name);
+                // gets image url from cloudinary
+                $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
                 // get user profile 
                 $user = User::find($decoded_token['user_id']);
                 $profile_id = $user->profile->id;
@@ -91,6 +89,7 @@ class PostController extends Controller
                     'body' => $request->body,
         
                     'featured' => $image_url,
+                    
         
                 ]);
         
@@ -104,6 +103,36 @@ class PostController extends Controller
                 return response()->json([
                     "data" => $post
                 ]);
+               }
+              
+                if($request->featured_video){
+                
+                // get user profile 
+                $user = User::find($decoded_token['user_id']);
+                $profile_id = $user->profile->id;
+                $post = Post::create([      
+        
+                    'title' => $request->title,
+        
+                    'profile_id' => $profile_id,
+        
+                    'body' => $request->body,
+                    
+                    'featured_video' => $request->featured_video
+        
+                ]);
+        
+                
+                // get user profile
+                // $userProfile = User::with('profile')->find($user->id);
+                // // sending a notification
+                // $user->notify(new NewPost($userProfile, $post));
+        
+                //Display a successful message upon save
+                return response()->json([
+                    "data" => $post
+                ]);
+                }
             }
         }
        

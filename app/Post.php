@@ -16,7 +16,7 @@ class Post extends Model implements LikeableContract
     //
     
     protected $fillable = [
-        'profile_id','title', 'body','featured'     
+        'profile_id','title', 'body','featured', 'featured_video'     
    ];
 
     // A post belongs to a User uniquely
