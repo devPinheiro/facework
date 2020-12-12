@@ -25,7 +25,7 @@ class ProfileController extends Controller
     {
         //
         $profile = User::findOrFail($id)->profile; //Find profile of user with id = $id
-        $posts = Post::orderby('id', 'desc')->paginate(5);
+        $posts = Post::with('profile')->orderBy('id', 'desc')->paginate(15);
         return response()->json([
             "posts" => $posts,
             "user" => $profile

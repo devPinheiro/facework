@@ -18,7 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('profile_id');
             $table->text('body');
             $table->text('title');
-            $table->string('featured');
+            $table->string('featured')->nullable();
+            $table->string('featured_video')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
