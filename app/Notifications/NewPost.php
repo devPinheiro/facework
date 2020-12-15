@@ -33,7 +33,7 @@ class NewPost extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -49,6 +49,10 @@ class NewPost extends Notification implements ShouldQueue
             'following_id' => $this->following->id,
             'following_name' => $this->following->name,
             'post_id' => $this->post->id,
+            'post_title' => $this->post->title,
+            'post_image' => $this->post->featured,
+            // 'post_author' => $this->post->profile->name,
+            // 'post_author_avatar' => $this->post->profile->image
         ];
     }
 
@@ -58,22 +62,23 @@ class NewPost extends Notification implements ShouldQueue
      * @param  mixed  $notifiable
      * @return array
      */
+  
+    //...
     public function toArray($notifiable)
     {
         return [
-            //
+            'id' => $this->id,
+            'read_at' => null,
+            'data' => [
+                'following_id' => $this->following->id,
+                'following_name' => $this->following->name,
+                'post_id' => $this->post->id,
+                'post_title' => $this->post->title,
+                'post_image' => $this->post->featured,
+                // 'post_author' => $this->post->profile->name,
+                // 'post_author_avatar' => $this->post->profile->image
+            ],
         ];
     }
 }
 
-
-
-class NewArticle extends Notification implements ShouldQueue
-{
-    // ..
-    
-
-    
-
-    
-}

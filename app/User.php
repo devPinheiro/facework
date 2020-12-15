@@ -12,8 +12,6 @@ use Cog\Laravel\Love\Liker\Models\Traits\Liker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelFollow\Followable;
-
-
 class User extends Authenticatable implements LikerContract
 {
     use Notifiable;
@@ -22,6 +20,17 @@ class User extends Authenticatable implements LikerContract
     use HasApiTokens;
     use SoftDeletes;
     use Followable;
+
+  
+    // /**
+    //  * The channels the user receives notification broadcasts on.
+    //  *
+    //  * @return string
+    //  */
+    // public function receivesBroadcastNotificationsOn()
+    // {
+    //     return 'App.User.' . $this->id;
+    // }
 
     public function setPasswordAttribute($password)
         {   
