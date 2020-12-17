@@ -76,8 +76,8 @@ Route::group([
     'namespace' => 'API',    
     'prefix' => 'jobs'
 ], function () {    
-    Route::get('/', 'JobsController@showAll');
-    Route::get('/{id}', 'JobsController@show');
+    Route::get('/', 'JobVacanciesController@showAll');
+    Route::get('/{id}', 'JobVacanciesController@show');
 });
 
 // Feeds endpoint

@@ -21,7 +21,7 @@ class JobVacanciesController extends Controller
     public function index()
     {
         //
-        $jobs = Jobs::orderby('id', 'desc')->get();
+        $jobs = JobVacancies::orderby('id', 'desc')->get();
         return view('job.index')->with('jobs', $jobs);
     }
 
@@ -56,7 +56,7 @@ class JobVacanciesController extends Controller
         
         ]);
 
-        $job = Jobs::create([      
+        $job = JobVacancies::create([      
             'title' => $request->title,
             'category_id' => $request->category_id,
        
@@ -75,23 +75,23 @@ class JobVacanciesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Jobs  $jobs
+     * @param  \App\  $jobs
      * @return \Illuminate\Http\Response
      */
-    public function show(Jobs $jobs, $id)
+    public function show(JobVacancies $jobs, $id)
     {
         //
-         $job = Jobs::findOrFail($id); //Find job of id = $id
-         $jobs = Jobs::orderby('id', 'desc')->paginate(10);
+         $job = JobVacancies::findOrFail($id); //Find job of id = $id
+         $jobs = JobVacancies::orderby('id', 'desc')->paginate(10);
          
         return view('job.show', compact('job','jobs'));
     }
 
-    public function showAll(Jobs $jobs)
+    public function showAll(JobVacancies $jobs)
     {
          //
       
-         $jobs = Jobs::orderby('id', 'desc')->get();
+         $jobs = JobVacancies::orderby('id', 'desc')->get();
          
         return view('job.show', compact('jobs'));
     }
@@ -105,7 +105,7 @@ class JobVacanciesController extends Controller
     public function edit(Jobs $jobs)
     {
         //#//
-         $job = Jobs::findOrFail($id); //Find job of id = $id     
+         $job = JobVacancies::findOrFail($id); //Find job of id = $id     
         return view('job.edit', compact('job','jobs'));
     }
 
@@ -129,7 +129,7 @@ class JobVacanciesController extends Controller
         
         ]);
 
-        $job = Jobs::find($id);
+        $job = JobVacancies::find($id);
 
             
             $job = $request->title;
@@ -158,7 +158,7 @@ class JobVacanciesController extends Controller
     public function destroy(Jobs $jobs, $id)
     {
         //
-        $job = Jobs::findOrFail($id);
+        $job = JobVacancies::findOrFail($id);
         $job->delete();
 
         return redirect()->back()->with('flash_message',

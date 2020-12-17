@@ -15,7 +15,7 @@ use App\Comments;
 use Auth;
 use Session;
 use App\User;
-use App\Jobs;
+use App\JobVacancies;
 use App\Like;
 use App\Setting;
 use App\Broadcast;
