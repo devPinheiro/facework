@@ -85,7 +85,7 @@ Route::group([
     'prefix' => 'feeds'
 ], function () {    
     Route::get('/', 'PostController@feeds');
-    Route::middleware('auth:api')->post('/create', 'PostController@createPost');
+    Route::middleware('auth:api')->post('/create', 'PostController@create');
     Route::get('/{id}', 'PostController@showPost');
     Route::middleware('auth:api')->patch('/edit/{id}', 'PostController@updatePost');
     Route::middleware('auth:api')->delete('/{id}', 'PostController@deletePost');

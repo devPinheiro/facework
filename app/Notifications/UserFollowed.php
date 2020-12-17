@@ -8,9 +8,10 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UserFollowed extends Notification 
+class UserFollowed extends Notification implements ShouldQueue
 {
     use Queueable;
+    public $follower;
 
     /**
      * Create a new notification instance.
@@ -47,5 +48,22 @@ class UserFollowed extends Notification
             'follower_name' => $this->follower->name,
             'follower_avatar' => $this->follower->image,
         ];
+    }
+
+      /**
+     * Get the array representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
+  
+    //...
+    public function toArray($notifiable)
+    {
+        return [
+            'follower_id' => $this->follower->id,
+            'follower_name' => $this->follower->name,
+            'follower_avatar' => $this->follower->image,
+        ]; 
     }
 }

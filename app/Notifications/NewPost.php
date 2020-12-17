@@ -12,8 +12,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 class NewPost extends Notification implements ShouldQueue
 {
     use Queueable;
-    protected $following;
-    protected $post;
+    public $following;
+    public $post;
     /**
      * Create a new notification instance.
      *
@@ -51,8 +51,8 @@ class NewPost extends Notification implements ShouldQueue
             'post_id' => $this->post->id,
             'post_title' => $this->post->title,
             'post_image' => $this->post->featured,
-            // 'post_author' => $this->post->profile->name,
-            // 'post_author_avatar' => $this->post->profile->image
+            'post_author' => $this->post->profile->name,
+            'post_author_avatar' => $this->post->profile->image
         ];
     }
 
@@ -75,8 +75,8 @@ class NewPost extends Notification implements ShouldQueue
                 'post_id' => $this->post->id,
                 'post_title' => $this->post->title,
                 'post_image' => $this->post->featured,
-                // 'post_author' => $this->post->profile->name,
-                // 'post_author_avatar' => $this->post->profile->image
+                'post_author' => $this->post->profile->name,
+                'post_author_avatar' => $this->post->profile->image
             ],
         ];
     }

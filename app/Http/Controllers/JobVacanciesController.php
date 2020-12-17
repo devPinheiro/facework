@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
-use App\Http\ClearanceMiddleware;
-
-
-use App\Jobs;
+use App\JobVacancies;
 use App\JobsCategory;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class JobsController extends Controller
+class JobVacanciesController extends Controller
 {
 
     // public function __construct() {
@@ -85,15 +81,10 @@ class JobsController extends Controller
     public function show(Jobs $jobs, $id)
     {
         //
-         $job = Jobs::find($id); //Find job of id = $id
-         if($job) {
-            return response()->json([
-                "data" => $job
-            ]);
-         }
-         return response()->json([
-            "message" => "No record found"
-        ]);
+         $job = Jobs::findOrFail($id); //Find job of id = $id
+         $jobs = Jobs::orderby('id', 'desc')->paginate(10);
+         
+        return view('job.show', compact('job','jobs'));
     }
 
     public function showAll(Jobs $jobs)
@@ -101,16 +92,8 @@ class JobsController extends Controller
          //
       
          $jobs = Jobs::orderby('id', 'desc')->get();
-         if($jobs) {
-            return response()->json([
-                "data" => $jobs
-            ]);
-         }
-         return response()->json([
-            "message" => "No record found"
-        ]);
          
-         
+        return view('job.show', compact('jobs'));
     }
 
     /**
@@ -182,3 +165,5 @@ class JobsController extends Controller
              'successfully deleted');
     }
 }
+
+
