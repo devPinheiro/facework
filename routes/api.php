@@ -68,6 +68,7 @@ Route::group([ 'middleware' => 'auth:api',    'namespace' => 'API' ], function (
     // ...
     Route::get('/notifications', 'UsersController@notifications');
     Route::get('/notifications/read', 'UsersController@markAllNotificationsAsRead');
+    Route::put('/notifications/read/{id}', 'UsersController@markOneNotificationsAsRead');
 });
 
 // Jobs endpoint
