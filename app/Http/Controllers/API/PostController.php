@@ -44,7 +44,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function createPost(Request $request) {         
+    public function create(Request $request) {         
 
         $decoded_token = PassportToken::dirtyDecode(substr($request->header()['authorization'][0], 7));
 
