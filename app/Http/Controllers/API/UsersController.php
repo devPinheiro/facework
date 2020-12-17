@@ -17,6 +17,7 @@ use App\Notifications\UserFollowed;
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Notifications\DatabaseNotification;
 
 //Enables us to output flash messaging
 use Session;
@@ -286,7 +287,7 @@ class UsersController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function notifications() {
-            $notifications = auth()->user()->unreadNotifications()->paginate(20);
+            $notifications = auth()->user()->Notifications()->paginate(20);
             return response()->json([
                 'data' => $notifications
             ]);
@@ -300,9 +301,29 @@ class UsersController extends Controller {
     * @return \Illuminate\Http\Response
     */
     public function markAllNotificationsAsRead() {
-        auth()->user()->unreadNotifications->markAsRead();
+        auth()->user()->Notifications()->markAsRead();
         return response()->json([
             'message' => "Notifications marked as read"
+        ]);
+    }
+    
+
+    /**
+    * Mark One notifications as read
+    *
+    * 
+    * @return \Illuminate\Http\Response
+    */
+    public function markOneNotificationsAsRead($id) {
+        $notification = DatabaseNotification::find($id);
+        if($notification){
+            $notification->markAsRead();
+            return response()->json([
+                'message' => "Notification marked as read"
+            ]);
+        }
+        return response()->json([
+            'error' => "Notification does not exist"
         ]);
     }
     
