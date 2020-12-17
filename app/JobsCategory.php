@@ -19,6 +19,6 @@ class JobsCategory extends Model
 
     // A category can have many jobs
     public function jobs(){
-        return  $this->hasMany('App\Jobs');
+        return  $this->hasMany('App\JobVacancies');
       }
 }
