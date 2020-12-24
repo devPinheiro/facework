@@ -116,7 +116,7 @@ class JobVacanciesController extends Controller
      * @param  \App\Jobs  $jobs
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jobs $jobs)
+    public function edit(JobVacancies $jobs)
     {
         //#//
          $job = JobVacancies::findOrFail($id); //Find job of id = $id     
