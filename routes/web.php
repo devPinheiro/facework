@@ -46,10 +46,10 @@ Route::resource('broadcast', 'BroadcastController');
 
 Route::resource('advert', 'AdvertController');
 
-Route::resource('job', 'JobsController');
+Route::resource('job', 'JobVacanciesController');
 
 Route::get('/jobs',[
-    'uses' => 'JobsController@showAll',
+    'uses' => 'JobVacanciesController@showAll',
     'as' => 'job.show'
 ]);
 

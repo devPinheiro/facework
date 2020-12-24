@@ -13,7 +13,7 @@ use App\Post;
 use Auth;
 use Session;
 use App\User;
-use App\Jobs;
+use App\JobVacancies;
 use App\Like;
 use App\Setting;
 use App\Broadcast;
@@ -32,7 +32,7 @@ class PostController extends Controller {
      */
 
     public function home(){
-        $jobs = Jobs::orderby('id', 'desc')->paginate(6);
+        $jobs = JobVacancies::orderby('id', 'desc')->paginate(6);
         $advert = Advert::orderby('id', 'desc')->paginate(1);
         $broadcasts = Broadcast::orderby('id', 'desc')->paginate(1);
         $profile = Profile::orderby('id', 'desc')->paginate(7);
