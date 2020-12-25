@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
+use App\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -124,7 +125,8 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        $posts = Post::with('profile')->Where('profile_id', $request->user()->profile->id)->orderBy('id', 'desc')->paginate(15);
+        return response()->json(['user' => $request->user(), 'profile' => $request->user()->profile, 'posts'=> $posts]);
     }
 
     /**
