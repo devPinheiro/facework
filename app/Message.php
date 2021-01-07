@@ -6,14 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    // Mass Assignment
-    protected $fillable = [
-        'messages',
-        'user_id'
-    ];
+    /**
+     * Fields that are mass assignable
+     *
+     * @var array
+     */
+    protected $fillable = ['message','receiver_id','user_id'];
 
-    // Relationships
-    public function user(){
-        return $this->belongsTo('App\User');
+    /**
+     * A message belong to a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * A message belong to a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'chat_id');
     }
 }
