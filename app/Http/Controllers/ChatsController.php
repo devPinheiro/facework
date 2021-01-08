@@ -22,7 +22,7 @@ class ChatsController extends Controller
      */
     public function index()
     {
-        $chats = User::all(['chat_id','name'])->except(Auth::id());
+        $chats = User::where('id','!=',Auth::id())->get(['chat_id','name']);
         return $chats;
     }
     /**
@@ -45,9 +45,11 @@ class ChatsController extends Controller
      */
     public function fetchMessages($other_party)
     {
-        $msg = Message::with('sender')->where('user_id',$other_party)->orWhere('receiver_id',$other_party)->get();
+        $chat_id = Auth::user()->chat_id;
+        $msg = Message::with('sender')->where('user_id',$other_party)->where('receiver_id',$chat_id)->get();
+        $myMsg = Message::with('sender')->where('user_id',$chat_id)->where('receiver_id',$other_party)->get();
 
-        return new \App\Http\Resources\MessagesResource($msg);
+        return new \App\Http\Resources\MessagesResource($msg->merge($myMsg)->sortBy('id'));
     }
 
     /**
