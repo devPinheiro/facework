@@ -114,3 +114,9 @@ Route::middleware('cors')->get('/feedback-all',[
         'uses'       =>      'FeedbackController@index',
         'as'         =>      'get-feedback'
     ]);
+
+
+Route::get('chats', '\API\ChatsController@index');
+Route::get('chat/{other_party}', '\API\ChatsController@single');
+Route::get('{other_party}/messages', '\API\ChatsController@fetchMessages');
+Route::post('{other_party}/messages', '\API\ChatsController@sendMessage');

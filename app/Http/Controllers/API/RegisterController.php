@@ -11,6 +11,7 @@ use Mail;
 use App\Mail\TestEmail;
 use App\Mail\AdminEMail;
 use GuzzleHttp\Client;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -44,6 +45,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+            'chat_id' => Str::uuid()
         ]);
 
         Profile::create([

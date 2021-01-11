@@ -67,7 +67,7 @@ class User extends Authenticatable implements LikerContract
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'title', 'user_id', 'active', 'api_token', 'activation_token'
+        'name', 'email', 'password', 'title', 'user_id', 'active', 'api_token', 'activation_token', 'chat_id'
     ];
 
     /**
