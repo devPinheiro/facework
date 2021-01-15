@@ -49,7 +49,7 @@ Route::group([
     'namespace' => 'API',    
     'prefix' => 'profile'
 ], function () {    
-    Route::get('/{id}', 'ProfileController@dashboard');
+    Route::middleware('auth:api')->get('/{id}', 'ProfileController@dashboard');
     Route::middleware('auth:api')->patch('/edit/{id}', 'ProfileController@update');
     Route::middleware('auth:api')->patch('/edit/upload-profile-image/{id}', 'ProfileController@changeProfileImage');
 });
@@ -114,3 +114,6 @@ Route::middleware('cors')->get('/feedback-all',[
         'uses'       =>      'FeedbackController@index',
         'as'         =>      'get-feedback'
     ]);
+
+    // TODO
+    // Chat endpoints
