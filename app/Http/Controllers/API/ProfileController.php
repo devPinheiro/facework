@@ -9,6 +9,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use JD\Cloudder\Facades\Cloudder;
+use Auth;
 
 //Importing laravel-permission models
 use Spatie\Permission\Models\Role;
@@ -21,15 +22,14 @@ class ProfileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard($id)
+    public function dashboard(Request $request, $id)
     {
         //
         $profile = User::findOrFail($id)->profile; //Find profile of user with id = $id
-        $posts = Post::with('profile')->orderBy('id', 'desc')->paginate(15);
-        return response()->json([
-            "posts" => $posts,
-            "user" => $profile
-        ]);
+        $posts = Post::with('profile')->Where('profile_id', $id)->orderBy('id', 'desc')->paginate(15);
+        $user = auth()->user();
+        $isFollowing = $user->isFollowing($id);
+        return response()->json(['isFollowing' => $isFollowing, 'profile' => $profile, 'posts'=> $posts]);
 
     }
 
