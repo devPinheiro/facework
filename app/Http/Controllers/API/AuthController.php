@@ -14,6 +14,7 @@ use Mail;
 use App\Mail\TestEmail;
 use App\Mail\AdminEMail;
 use App\Notifications\SignupActivate;
+use Illuminate\Support\Str;
 
 
 class AuthController extends Controller
@@ -36,7 +37,8 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
-            'activation_token' => str_random(60)
+            'activation_token' => str_random(60),
+            'chat_id' => Str::uuid()
         ]);
 
         Profile::create([

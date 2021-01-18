@@ -12,6 +12,7 @@ use Cog\Laravel\Love\Liker\Models\Traits\Liker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelFollow\Followable;
+
 class User extends Authenticatable implements LikerContract
 {
     use Notifiable;
@@ -67,7 +68,7 @@ class User extends Authenticatable implements LikerContract
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'title', 'user_id', 'active', 'api_token', 'activation_token'
+        'name', 'email', 'password', 'title', 'user_id', 'active', 'api_token', 'activation_token', 'chat_id'
     ];
 
     /**
