@@ -115,5 +115,15 @@ Route::middleware('cors')->get('/feedback-all',[
         'as'         =>      'get-feedback'
     ]);
 
-    // TODO
-    // Chat endpoints
+// TODO
+// Chat endpoints
+Route::group([     
+    'namespace' => 'API',    
+    'prefix' => 'chats',
+    'middleware' => 'auth:api'
+], function () {    
+    Route::get('', 'ChatsController@index');
+    Route::get('{other_party}', 'ChatsController@single');
+    Route::get('{other_party}/messages', 'ChatsController@fetchMessages');
+    Route::post('{other_party}/messages', 'ChatsController@sendMessage');
+});  
