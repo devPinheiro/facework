@@ -119,8 +119,4 @@ Route::middleware('cors')->get('/feedback-all',[
 Route::get('chats', '\API\ChatsController@index');
 Route::get('chat/{other_party}', '\API\ChatsController@single');
 Route::get('{other_party}/messages', '\API\ChatsController@fetchMessages');
-<<<<<<< HEAD
 Route::post('{other_party}/messages', '\API\ChatsController@sendMessage');
-=======
-Route::post('{other_party}/messages', '\API\ChatsController@sendMessage');
->>>>>>> Second Iteration
