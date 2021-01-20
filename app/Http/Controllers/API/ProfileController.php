@@ -62,7 +62,8 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
-            'service' => 'required'
+            'service' => 'required',
+            'image' => 'required|mimes:jpeg,bmp,jpg,png|between:1, 6000'
         ]);
 
             $profile = Profile::where('user_id', $id)->first();
@@ -79,6 +80,24 @@ class ProfileController extends Controller
                     "message" => "user not found"
                 ]);
             }
+    
+               
+                $image = $request->file('image');
+    
+                $name = $image->getClientOriginalName();
+    
+                $image_name =  $image->getRealPath();
+                
+                // uploads to cloudinary
+                Cloudder::upload($image_name, null);
+    
+                list($width, $height) = getimagesize($image_name);
+                // gets image url from cloudinary
+                $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+    
+    
+                $profile->image = $image_url; 
+                   
             
             $profile->name = $request->name;
 
